@@ -1,100 +1,123 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
 
 app.use(express.json());
 
-let users = [
+mongoose.connect("mongodb://127.0.0.1:27017/rest-api")
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log(err));
 
-    {
-        id: 1,
-        name: "Rahul",
-        email: "rahul@example.com",
-        age: 22
-    },
+const User = require("./models/User");
 
-    {
-        id: 2,
-        name: "Aditi",
-        email: "aditi@example.com",
-        age: 17
+
+app.post("/users", async (req, res) => {
+    try {
+
+        const user = await User.create(req.body);
+        res.status(201).json(user);
+
+    } catch (err) {
+
+        res.status(400).json({ error: err.message });
+
     }
-
-];
-
-app.get("/users", (req, res) => {
-    res.json(users);
 });
 
-app.get("/users/search", (req, res) => {
+app.get("/users", async (req, res) => {
+
+    const users = await User.find();
+    res.json(users);
+
+});
+
+app.get("/users/:id", async (req, res) => {
+
+    try {
+
+        const user = await User.findById(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        res.json(user);
+
+    } catch (err) {
+        res.status(400).json({ error: "Invalid ID" });
+    }
+
+});
+
+app.put("/users/:id", async (req, res) => {
+
+    try {
+
+        const user = await User.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new: true, runValidators: true }
+        );
+
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        res.json(user);
+
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+
+});
+
+app.delete("/users/:id", async (req, res) => {
+
+    try {
+
+        const user = await User.findByIdAndDelete(req.params.id);
+
+        if (!user) {
+            return res.status(404).json({ msg: "User not found" });
+        }
+
+        res.json({ msg: "User deleted" });
+
+    } catch (err) {
+        res.status(400).json({ error: "Invalid ID" });
+    }
+
+});
+
+app.get("/users/adults", async (req, res) => {
+
+    const users = await User.find({ age: { $gte: 18 } });
+
+    res.json(users);
+
+});
+
+app.get("/users/search", async (req, res) => {
 
     const name = req.query.name;
 
-    const result = users.filter(
-        u => u.name.toLowerCase() === name.toLowerCase()
-    );
+    const users = await User.find({
+        name: new RegExp(name, "i")
+    });
 
-    res.json(result);
+    res.json(users);
+
 });
 
-app.get("/users/adults", (req, res) => {
-    const adults = users.filter(u => u.age >= 18);
-    res.json(adults);
-});
+app.get("/users/emails", async (req, res) => {
 
-app.get("/users/emails", (req, res) => {
-    const emails = users.map(u => u.email);
-    res.json(emails);
-});
+    const users = await User.find({}, "email");
 
-app.get("/users/:id", (req, res) => {
+    res.json(users);
 
-    const user = users.find(u => u.id == req.params.id);
-
-    if (!user) {
-        return res.status(404).json({ msg: "User not found" });
-    }
-
-    res.json(user);
-});
-
-app.post("/users", (req, res) => {
-
-    if (!req.body.name || !req.body.email || !req.body.age) {
-        return res.status(400).json({
-            msg: "Name, Email and Age required"
-        });
-    }
-
-    const newUser = {
-        id: users.length + 1,
-        name: req.body.name,
-        email: req.body.email,
-        age: req.body.age
-    };
-
-    users.push(newUser);
-
-    res.status(201).json(newUser);
-});
-
-app.put("/users/:id", (req, res) => {
-
-    const id = parseInt(req.params.id);
-
-    let user = users.find(u => u.id === id);
-
-    if (!user) {
-        return res.status(404).json({ msg: "User not found" });
-    }
-
-    user.name = req.body.name || user.name;
-    user.email = req.body.email || user.email;
-    user.age = req.body.age || user.age;
-
-    res.json(user);
 });
 
 app.listen(3000, () => {
-    console.log("API running at http://localhost:3000");
+    console.log("Server running at http://localhost:3000");
 });
