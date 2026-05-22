@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>User Dashboard</h1>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+        <br><br>
+
+        <div class="search-section">
+
+            <input type="text" id="search" placeholder="Search User">
+
+            <button onclick="searchUser()">
+                Search
+            </button>
+
+            <button onclick="loadUsers()">
+                Show All
+            </button>
+
+        </div>
+
+        <hr>
+
+        <div class="form-section">
+
+            <h3>Add User</h3>
+
+            <input type="text" id="newName" placeholder="Name">
+
+            <input type="email" id="newEmail" placeholder="Email">
+
+            <input type="password" id="newPassword" placeholder="Password">
+
+            <button onclick="addUser()">
+                Add User
+            </button>
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="userTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+    </script>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
