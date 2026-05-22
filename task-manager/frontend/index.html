@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Task Manager</title>
+
+    <link rel="stylesheet"
+    href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Task Manager</h1>
+
+    <div class="task-form">
+
+        <input
+        type="text"
+        id="taskInput"
+        placeholder="Enter Task">
+
+        <select id="category">
+
+            <option value="Personal">
+                Personal
+            </option>
+
+            <option value="Work">
+                Work
+            </option>
+
+            <option value="Urgent">
+                Urgent
+            </option>
+
+        </select>
+
+        <button onclick="addTask()">
+            Add Task
+        </button>
+
+    </div>
+
+    <div class="sort-section">
+
+        <button onclick="sortNewest()">
+            Newest
+        </button>
+
+        <button onclick="sortOldest()">
+            Oldest
+        </button>
+
+    </div>
+
+    <ul id="taskList">
+
+    </ul>
+
+</div>
+
+<script src=
+"https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
