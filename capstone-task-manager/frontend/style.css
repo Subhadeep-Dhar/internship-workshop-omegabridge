@@ -177,3 +177,17 @@ li:hover {
 .urgent-task {
     border-left-color: #e74c3c;
 }
+
+.filter-buttons {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.filter-buttons button {
+    background: #34495e;
+}
+
+.filter-buttons button:hover {
+    opacity: 0.9;
+}

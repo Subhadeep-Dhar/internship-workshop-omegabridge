@@ -2,6 +2,8 @@ const API =
     "http://localhost:3000";
 
 
+let allTasks = [];
+
 // ---------- TOKEN ----------
 
 function getHeaders() {
@@ -189,8 +191,11 @@ async function loadTasks() {
                 getHeaders()
             );
 
+        allTasks =
+            res.data;
+
         displayTasks(
-            res.data
+            allTasks
         );
 
     } catch (error) {
@@ -353,6 +358,57 @@ Delete
     });
 }
 
+
+function filterTasks(
+    type
+) {
+
+    if (
+        type ===
+        "all"
+    ) {
+
+        displayTasks(
+            allTasks
+        );
+
+        return;
+    }
+
+    if (
+        type ===
+        "pending"
+    ) {
+
+        const pending =
+            allTasks.filter(
+                task =>
+                    !task.completed
+            );
+
+        displayTasks(
+            pending
+        );
+
+        return;
+    }
+
+    if (
+        type ===
+        "completed"
+    ) {
+
+        const completed =
+            allTasks.filter(
+                task =>
+                    task.completed
+            );
+
+        displayTasks(
+            completed
+        );
+    }
+}
 
 
 // ---------- ADD TASK ----------
