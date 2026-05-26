@@ -267,6 +267,53 @@ app.get(
     });
 
 
+// ---------- GET MY POSTS ----------
+
+app.get(
+    "/my-posts",
+    auth,
+
+    async (
+        req,
+        res
+    ) => {
+
+        try {
+
+            const posts =
+                await Post.find({
+
+                    authorId:
+                        req.user.id
+
+                })
+
+                    .sort({
+                        createdAt:
+                            -1
+                    });
+
+            res.json(
+                posts
+            );
+
+        } catch (
+        error
+        ) {
+
+            console.log(
+                error
+            );
+
+            res.status(500)
+                .json({
+                    message:
+                        "Failed to load posts"
+                });
+        }
+    });
+
+
 
 // ---------- CREATE POST ----------
 

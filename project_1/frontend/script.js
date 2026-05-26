@@ -116,14 +116,50 @@ async function login() {
 
 async function loadPosts() {
 
-    const res =
-        await axios.get(
-            `${API}/posts`
+    try {
+
+        const page =
+            window.location.pathname
+                .split("/")
+                .pop();
+
+        let res;
+
+        if (
+            page ===
+            "dashboard.html"
+        ) {
+
+            res =
+                await axios.get(
+
+                    `${API}/my-posts`,
+
+                    getHeaders()
+
+                );
+
+        } else {
+
+            res =
+                await axios.get(
+                    `${API}/posts`
+                );
+
+        }
+
+        displayPosts(
+            res.data
         );
 
-    displayPosts(
-        res.data
-    );
+    } catch (
+    error
+    ) {
+
+        console.log(
+            error
+        );
+    }
 }
 
 
@@ -147,6 +183,23 @@ function displayPosts(
         );
 
     container.innerHTML = "";
+
+    if (
+        posts.length === 0
+    ) {
+
+        container.innerHTML = `
+
+            <p class="empty-message">
+
+            No Blog Posts Yet
+
+            </p>
+
+        `;
+
+        return;
+    }
 
     const token =
         localStorage.getItem(
@@ -176,32 +229,36 @@ function displayPosts(
 
 <div class="card">
 
-<h2>
+<h2 class="post-title">
 
 ${post.title}
 
 </h2>
 
-<p class="post-author">
-
-By
-${post.authorName}
-
-</p>
-
-<p>
+<p class="post-content">
 
 ${post.content}
 
 </p>
 
-<p class="post-date">
+<div class="post-meta">
+
+<span>
+
+By
+${post.authorName}
+
+</span>
+
+<span>
 
 ${new Date(
             post.createdAt
-        ).toLocaleString()}
+        ).toLocaleDateString()}
 
-</p>
+</span>
+
+</div>
 
 ${window.location.pathname
                 .includes(
@@ -368,16 +425,16 @@ async function editPost(
             oldTitle
         );
 
+    if (!title)
+        return;
+
     const content =
         prompt(
             "Edit Content",
             oldContent
         );
 
-    if (
-        !title ||
-        !content
-    )
+    if (!content)
         return;
 
     await axios.put(
