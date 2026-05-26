@@ -118,3 +118,62 @@ li {
     text-align: center;
     color: gray;
 }
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    flex: 1;
+    background: #3498db;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.task-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.task-form input,
+.task-form select {
+    flex: 1;
+}
+
+li {
+    border-left: 5px solid #3498db;
+    transition: 0.2s;
+}
+
+li:hover {
+    transform: translateY(-2px);
+}
+
+.work-task {
+    border-left-color: #3498db;
+}
+
+.personal-task {
+    border-left-color: #27ae60;
+}
+
+.urgent-task {
+    border-left-color: #e74c3c;
+}

@@ -240,12 +240,32 @@ No Tasks Found
         return;
     }
 
+    const completed =
+        tasks.filter(
+            t => t.completed
+        ).length;
+
+    document.getElementById(
+        "totalTasks"
+    ).innerText =
+        tasks.length;
+
+    document.getElementById(
+        "completedTasks"
+    ).innerText =
+        completed;
+
+    document.getElementById(
+        "pendingTasks"
+    ).innerText =
+        tasks.length -
+        completed;
+
     tasks.forEach(task => {
 
-        const li =
-            document.createElement(
-                "li"
-            );
+        const li = document.createElement("li");
+
+        li.className = `${task.category.toLowerCase()}-task`;
 
         li.innerHTML = `
 
@@ -493,9 +513,51 @@ const page =
         .split("/")
         .pop();
 
+const token =
+    localStorage.getItem(
+        "token"
+    );
+
 if (
-    page === "dashboard.html"
+    page ===
+    "dashboard.html"
 ) {
 
-    loadTasks();
+    if (!token) {
+
+        window.location.href =
+            "login.html";
+
+    } else {
+
+        loadTasks();
+
+    }
+}
+
+if (
+    document.getElementById(
+        "taskInput"
+    )
+) {
+
+    document
+        .getElementById(
+            "taskInput"
+        )
+
+        .addEventListener(
+            "keypress",
+
+            function (event) {
+
+                if (
+                    event.key ===
+                    "Enter"
+                ) {
+
+                    addTask();
+
+                }
+            });
 }
