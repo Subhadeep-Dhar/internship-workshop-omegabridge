@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+.container {
+    width: 90%;
+    max-width: 850px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.auth-box {
+    max-width: 400px;
+    text-align: center;
+}
+
+h1,
+h2 {
+    color: #333;
+}
+
+input,
+select {
+    width: 90%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    background: #3498db;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.logout-btn {
+    background: #e74c3c;
+}
+
+.task-form {
+    margin: 20px 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: white;
+    margin-bottom: 12px;
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.task-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.category {
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.work {
+    color: #3498db;
+}
+
+.personal {
+    color: #27ae60;
+}
+
+.urgent {
+    color: #e74c3c;
+}
+
+.task-buttons button {
+    margin-left: 5px;
+}
+
+.complete-btn {
+    background: #27ae60;
+}
+
+.edit-btn {
+    background: #f39c12;
+}
+
+.delete-btn {
+    background: #e74c3c;
+}
+
+.empty-message {
+    text-align: center;
+    color: gray;
+}

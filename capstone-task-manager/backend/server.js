@@ -51,11 +51,7 @@ mongoose.connect(
 
 app.post(
     "/signup",
-
-    async (
-        req,
-        res
-    ) => {
+    async (req, res) => {
 
         try {
 
@@ -63,27 +59,32 @@ app.post(
                 name,
                 email,
                 password
-            }
-                =
-                req.body;
-
-            const existingUser =
-                await User
-                    .findOne({
-                        email
-                    });
+            } = req.body;
 
             if (
-                existingUser
+                !name ||
+                !email ||
+                !password
             ) {
 
-                return res
+                return res.status(400)
                     .json({
-
                         message:
-                            "Email already exists"
-
+                            "All fields required"
                     });
+            }
+
+            const existingUser =
+                await User.findOne({
+                    email
+                });
+
+            if (existingUser) {
+
+                return res.json({
+                    message:
+                        "Email already exists"
+                });
             }
 
             const hashedPassword =
@@ -94,34 +95,29 @@ app.post(
 
             const user =
                 new User({
-
                     name,
                     email,
-
                     password:
                         hashedPassword
-
                 });
 
             await user.save();
 
             res.json({
-
                 message:
                     "Signup Successful"
-
             });
 
-        } catch (
-        error
-        ) {
+        } catch (error) {
+
+            console.log(
+                error
+            );
 
             res.status(500)
                 .json({
-
                     message:
-                        error.message
-
+                        "Signup Failed"
                 });
         }
     });
