@@ -242,17 +242,28 @@ app.get(
         res
     ) => {
 
-        const posts =
-            await Post
-                .find()
-                .sort({
-                    createdAt:
-                        -1
-                });
+        try {
 
-        res.json(
-            posts
-        );
+            const posts =
+                await Post.find()
+                    .sort({
+                        createdAt: -1
+                    });
+
+            res.json(
+                posts
+            );
+
+        } catch (error) {
+
+            console.log(error);
+
+            res.status(500)
+                .json({
+                    message:
+                        "Failed to load posts"
+                });
+        }
     });
 
 
@@ -268,28 +279,64 @@ app.post(
         res
     ) => {
 
-        const post =
-            new Post({
-
-                title:
-                    req.body.title,
-
-                content:
-                    req.body.content,
-
-                authorId:
-                    req.user.id,
-
-                authorName:
-                    req.user.name
-
-            });
-
-        await post.save();
-
-        res.json(
-            post
+        console.log(
+            "POST ROUTE HIT"
         );
+
+        console.log(
+            req.user
+        );
+
+        try {
+
+            const user =
+                await User.findById(
+                    req.user.id
+                );
+
+            if (!user) {
+
+                return res
+                    .status(404)
+                    .json({
+                        message:
+                            "User not found"
+                    });
+            }
+
+            const post =
+                new Post({
+
+                    title:
+                        req.body.title,
+
+                    content:
+                        req.body.content,
+
+                    authorId:
+                        user._id,
+
+                    authorName:
+                        user.name
+
+                });
+
+            await post.save();
+
+            res.json(
+                post
+            );
+
+        } catch (error) {
+
+            console.log(error);
+
+            res.status(500)
+                .json({
+                    message:
+                        "Failed to create post"
+                });
+        }
     });
 
 
@@ -305,32 +352,45 @@ app.put(
         res
     ) => {
 
-        const post =
-            await Post
-                .findOneAndUpdate(
+        try {
 
-                    {
+            const post =
+                await Post
+                    .findOneAndUpdate(
 
-                        _id:
-                            req.params.id,
+                        {
 
-                        authorId:
-                            req.user.id
+                            _id:
+                                req.params.id,
 
-                    },
+                            authorId:
+                                req.user.id
 
-                    req.body,
+                        },
 
-                    {
-                        returnDocument:
-                            "after"
-                    }
+                        req.body,
 
-                );
+                        {
+                            returnDocument:
+                                "after"
+                        }
 
-        res.json(
-            post
-        );
+                    );
+
+            res.json(
+                post
+            );
+
+        } catch (error) {
+
+            console.log(error);
+
+            res.status(500)
+                .json({
+                    message:
+                        "Update Failed"
+                });
+        }
     });
 
 
@@ -346,21 +406,34 @@ app.delete(
         res
     ) => {
 
-        await Post
-            .findOneAndDelete({
+        try {
 
-                _id:
-                    req.params.id,
+            await Post
+                .findOneAndDelete({
 
-                authorId:
-                    req.user.id
+                    _id:
+                        req.params.id,
 
+                    authorId:
+                        req.user.id
+
+                });
+
+            res.json({
+                message:
+                    "Post Deleted"
             });
 
-        res.json({
-            message:
-                "Post Deleted"
-        });
+        } catch (error) {
+
+            console.log(error);
+
+            res.status(500)
+                .json({
+                    message:
+                        "Delete Failed"
+                });
+        }
     });
 
 

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="top-bar">
+
+            <h1>
+                My Dashboard
+            </h1>
+
+            <button class="logout-btn" onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>Create Post</h2>
+
+            <input type="text" id="title" placeholder="Post Title">
+
+            <textarea id="content" placeholder="Write your blog...">
+</textarea>
+
+            <button onclick="createPost()">
+
+                Publish Post
+
+            </button>
+
+        </div>
+
+
+        <div id="dashboardPosts">
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+    </script>
+
+    <script src="script.js">
+    </script>
+
+</body>
+
+</html>
