@@ -83,7 +83,7 @@ async function seedProducts() {
                 "Electronics",
 
             image:
-                "https://via.placeholder.com/200",
+                "https://images.unsplash.com/photo-1527814050087-3793815479db?w=800",
 
             stock: 10
         },
@@ -101,7 +101,7 @@ async function seedProducts() {
                 "Electronics",
 
             image:
-                "https://via.placeholder.com/200",
+                "https://images.unsplash.com/photo-1511467687858-23d96c32e4ae?w=800",
 
             stock: 8
         },
@@ -111,7 +111,7 @@ async function seedProducts() {
                 "T-Shirt",
 
             description:
-                "Cotton casual t-shirt",
+                "Premium cotton casual t-shirt",
 
             price: 499,
 
@@ -119,7 +119,7 @@ async function seedProducts() {
                 "Fashion",
 
             image:
-                "https://via.placeholder.com/200",
+                "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800",
 
             stock: 20
         },
@@ -137,7 +137,7 @@ async function seedProducts() {
                 "Fashion",
 
             image:
-                "https://via.placeholder.com/200",
+                "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800",
 
             stock: 12
         }
