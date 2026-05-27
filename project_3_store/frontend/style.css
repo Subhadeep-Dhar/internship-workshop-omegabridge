@@ -23,17 +23,71 @@ body {
 
 .top-bar {
     background: white;
-    padding: 18px 25px;
-    border-radius: 16px;
-    margin-bottom: 30px;
+    padding: 18px 30px;
+    border-radius: 18px;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     box-shadow:
-    0 4px 14px
+    0 6px 20px
     rgba(0,0,0,0.08);
+
+    margin-bottom: 35px;
+}
+
+.logo h1 {
+    font-size: 28px;
+}
+
+.logo p {
+    color: #777;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-btn {
+    text-decoration: none;
+}
+
+.nav-btn button {
+    background: white;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 12px 18px;
+    font-weight: 600;
+}
+
+.nav-btn button:hover {
+    background: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.primary-btn button {
+    background: #3498db;
+    color: white;
+    border: none;
+}
+
+.cart-btn {
+    background: #2ecc71 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.logout-btn {
+    background: #e74c3c !important;
+    color: white !important;
+    border: none !important;
 }
 
 .top-bar h1 {

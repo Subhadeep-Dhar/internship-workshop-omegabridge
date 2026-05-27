@@ -15,51 +15,81 @@
 
     <div class="container">
 
-        <div>
+        <div class="top-bar">
 
-            <input type="text" id="search" placeholder="Search Products" onkeyup="searchProducts()">
+            <div class="logo">
 
-            <a href="cart.html">
+                <h1>
+                    Mini Store
+                </h1>
 
-                <button class="cart-btn">
+                <p>
+                    Shop smarter, faster
+                </p>
 
-                    Cart
+            </div>
+
+            <div class="nav-links">
+
+                <input type="text" id="search" placeholder="Search Products" onkeyup="searchProducts()">
+
+                <a class="nav-btn" href="index.html">
+
+                    <button>
+
+                        Home
+
+                    </button>
+
+                </a>
+
+                <a class="nav-btn" href="cart.html">
+
+                    <button class="cart-btn">
+
+                        Cart
+
+                    </button>
+
+                </a>
+
+                <a class="nav-btn" href="orders.html">
+
+                    <button>
+
+                        Orders
+
+                    </button>
+
+                </a>
+
+                <a class="nav-btn" href="login.html">
+
+                    <button>
+
+                        Login
+
+                    </button>
+
+                </a>
+
+                <a class="nav-btn" href="signup.html">
+
+                    <button>
+
+                        Signup
+
+                    </button>
+
+                </a>
+
+                <button class="logout-btn" onclick="logout()">
+
+                    Logout
 
                 </button>
 
-            </a>
-
-            <a href="orders.html">
-
-                <button>
-
-                    Orders
-
-                </button>
-
-            </a>
-
-            <a href="login.html">
-
-                <button>
-                    Login
-                </button>
-
-            </a>
-
-            <a href="signup.html">
-
-                <button>
-                    Signup
-                </button>
-
-            </a>
-
-            <button class="logout-btn" onclick="logout()">
-
-                Logout
-
-            </button>
+            </div>
 
         </div>
 
