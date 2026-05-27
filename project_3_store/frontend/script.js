@@ -302,6 +302,26 @@ async function loadCart() {
 
     cart.innerHTML = "";
 
+    if (
+        res.data.length === 0
+    ) {
+
+        cart.innerHTML =
+
+            `<h2 class="empty">
+
+Cart Is Empty
+
+</h2>`;
+
+        document.getElementById(
+            "total"
+        ).innerText =
+            "";
+
+        return;
+    }
+
     res.data.forEach(
         item => {
 
@@ -355,6 +375,75 @@ Remove
 ₹${total}`;
 }
 
+
+async function loadOrders() {
+
+    const res =
+        await axios.get(
+
+            `${API}/orders`,
+
+            getHeaders()
+
+        );
+
+    const orders =
+        document.getElementById(
+            "orders"
+        );
+
+    orders.innerHTML =
+        "";
+
+    if (
+        res.data.length === 0
+    ) {
+
+        orders.innerHTML =
+
+            `<h2 class="empty">
+
+No Orders Yet
+
+</h2>`;
+
+        return;
+    }
+
+    res.data.forEach(
+        order => {
+
+            orders.innerHTML += `
+
+<div class=
+"order-card">
+
+<h3>
+
+Order Total:
+₹${order.total}
+
+</h3>
+
+<p>
+
+Status:
+${order.status}
+
+</p>
+
+<p>
+
+${new Date(
+                order.createdAt
+            ).toLocaleString()}
+
+</p>
+
+</div>
+`;
+        });
+}
 
 
 // ---------- REMOVE CART ----------
@@ -438,4 +527,12 @@ if (
 ) {
 
     loadCart();
+}
+
+if (
+    page ===
+    "orders.html"
+) {
+
+    loadOrders();
 }
