@@ -168,28 +168,22 @@ No Products Found
 <img src=
 "${product.image}">
 
+<div class="card-content">
+
 <h3>
-
 ${product.name}
-
 </h3>
 
 <p class="category">
-
 ${product.category}
-
 </p>
 
 <p>
-
 ${product.description}
-
 </p>
 
-<h4>
-
+<h4 class="price">
 ₹${product.price}
-
 </h4>
 
 <button
