@@ -1,6 +1,8 @@
 const API =
     "http://localhost:3000";
 
+let allProducts = [];
+
 
 // ---------- TOKEN ----------
 
@@ -121,6 +123,18 @@ async function loadProducts() {
             `${API}/products`
         );
 
+    allProducts =
+        res.data;
+
+    displayProducts(
+        allProducts
+    );
+}
+
+function displayProducts(
+    products
+) {
+
     const container =
         document.getElementById(
             "products"
@@ -129,7 +143,22 @@ async function loadProducts() {
     container.innerHTML =
         "";
 
-    res.data.forEach(
+    if (
+        products.length === 0
+    ) {
+
+        container.innerHTML =
+
+            `<h2 class="empty">
+
+No Products Found
+
+</h2>`;
+
+        return;
+    }
+
+    products.forEach(
         product => {
 
             container.innerHTML += `
@@ -144,6 +173,12 @@ async function loadProducts() {
 ${product.name}
 
 </h3>
+
+<p class="category">
+
+${product.category}
+
+</p>
 
 <p>
 
@@ -170,6 +205,35 @@ Add To Cart
 </div>
 `;
         });
+}
+
+function searchProducts() {
+
+    const value =
+        document
+            .getElementById(
+                "search"
+            )
+
+            .value
+            .toLowerCase();
+
+    const filtered =
+        allProducts.filter(
+            product =>
+
+                product.name
+                    .toLowerCase()
+
+                    .includes(
+                        value
+                    )
+
+        );
+
+    displayProducts(
+        filtered
+    );
 }
 
 
