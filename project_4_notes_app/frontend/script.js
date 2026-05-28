@@ -164,6 +164,23 @@ function displayNotes(
     pinnedDiv.innerHTML =
         "";
 
+    // Empty state
+
+    if (
+        notes.length === 0
+    ) {
+
+        notesDiv.innerHTML =
+
+            `<h2 class="empty">
+
+No Notes Yet
+
+</h2>`;
+
+        return;
+    }
+
     notes.forEach(
         note => {
 
@@ -177,6 +194,8 @@ style=
 "background:
 ${note.color};">
 
+<div>
+
 <h3>
 
 ${note.title}
@@ -189,11 +208,16 @@ ${note.content}
 
 </p>
 
+</div>
+
 <div
 class=
 "note-actions">
 
 <button
+class=
+"pin-btn"
+
 onclick=
 "togglePin(
 '${note._id}',
@@ -208,6 +232,9 @@ ${note.pinned ?
 </button>
 
 <button
+class=
+"edit-btn"
+
 onclick=
 "editNote(
 '${note._id}',
@@ -220,6 +247,9 @@ Edit
 </button>
 
 <button
+class=
+"delete-btn"
+
 onclick=
 "deleteNote(
 '${note._id}'
@@ -234,6 +264,8 @@ Delete
 </div>
 `;
 
+            // Show pinned separately
+
             if (
                 note.pinned
             ) {
@@ -242,7 +274,6 @@ Delete
                     .innerHTML +=
                     html;
             }
-
 
             // Show ALL notes
 
@@ -353,11 +384,17 @@ async function editNote(
             oldTitle
         );
 
+    if (!title)
+        return;
+
     const content =
         prompt(
             "Edit Content",
             oldContent
         );
+
+    if (!content)
+        return;
 
     await axios.put(
 
