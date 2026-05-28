@@ -10,22 +10,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 </head>
 
 <body>
 
-    <div class="app">
+    <div class="keep-app">
 
-        <header class="topbar">
+        <!-- HEADER -->
 
-            <div class="logo">
+        <header class="keep-header">
 
-                📝 <span>My Notes</span>
+            <div class="brand">
+
+                ☰
+
+                <h2>
+
+                    Keep Notes
+
+                </h2>
 
             </div>
 
-            <div class="search-box">
+            <div class="search-wrapper">
 
                 <input type="text" id="search" placeholder="Search notes..." onkeyup="searchNotes()">
 
@@ -40,15 +49,15 @@
         </header>
 
 
-        <!-- ADD NOTE -->
+        <!-- NOTE CREATOR -->
 
-        <div class="note-creator">
+        <div class="create-note">
 
             <input type="text" id="title" placeholder="Title">
 
             <textarea id="content" placeholder="Take a note..."></textarea>
 
-            <div class="creator-bottom">
+            <div class="note-options">
 
                 <select id="color">
 
@@ -56,24 +65,24 @@
                         White
                     </option>
 
-                    <option value="#fef3bd">
-                        Yellow
-                    </option>
-
-                    <option value="#d7e3fc">
-                        Blue
-                    </option>
-
-                    <option value="#faafa8">
+                    <option value="#f28b82">
                         Red
                     </option>
 
-                    <option value="#d3bfdb">
-                        Purple
+                    <option value="#fbbc04">
+                        Yellow
                     </option>
 
-                    <option value="#e2f6d3">
+                    <option value="#ccff90">
                         Green
+                    </option>
+
+                    <option value="#aecbfa">
+                        Blue
+                    </option>
+
+                    <option value="#d7aefb">
+                        Purple
                     </option>
 
                 </select>
@@ -89,22 +98,22 @@
         </div>
 
 
-        <h2 class="section-title">
+        <h3 class="section-title">
 
-            📌 Pinned
+            Pinned
 
-        </h2>
+        </h3>
 
         <div class="notes-grid" id="pinnedNotes">
 
         </div>
 
 
-        <h2 class="section-title">
+        <h3 class="section-title">
 
-            Notes
+            Others
 
-        </h2>
+        </h3>
 
         <div class="notes-grid" id="notes">
 

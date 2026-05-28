@@ -216,7 +216,10 @@ class=
 
 <button
 class=
-"pin-btn"
+"action-btn pin-btn"
+
+title=
+"Pin Note"
 
 onclick=
 "togglePin(
@@ -224,16 +227,18 @@ onclick=
 ${note.pinned}
 )">
 
-${note.pinned ?
-                    "Unpin"
-                    :
-                    "Pin"}
+<i class=
+"fa-solid fa-thumbtack">
+</i>
 
 </button>
 
 <button
 class=
-"edit-btn"
+"action-btn edit-btn"
+
+title=
+"Edit Note"
 
 onclick=
 "editNote(
@@ -242,20 +247,27 @@ onclick=
 \`${note.content}\`
 )">
 
-Edit
+<i class=
+"fa-solid fa-pen">
+</i>
 
 </button>
 
 <button
 class=
-"delete-btn"
+"action-btn delete-btn"
+
+title=
+"Delete Note"
 
 onclick=
 "deleteNote(
 '${note._id}'
 )">
 
-Delete
+<i class=
+"fa-solid fa-trash">
+</i>
 
 </button>
 
