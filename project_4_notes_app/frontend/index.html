@@ -15,80 +15,84 @@
 
 <body>
 
-    <div class="container">
+    <div class="app">
 
-        <div class="navbar">
+        <header class="topbar">
 
-            <h1>
-                My Notes
-            </h1>
+            <div class="logo">
 
-            <div class="nav-right">
+                📝 <span>My Notes</span>
+
+            </div>
+
+            <div class="search-box">
 
                 <input type="text" id="search" placeholder="Search notes..." onkeyup="searchNotes()">
 
-                <button class="logout-btn" onclick="logout()"> Logout </button>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </header>
+
+
+        <!-- ADD NOTE -->
+
+        <div class="note-creator">
+
+            <input type="text" id="title" placeholder="Title">
+
+            <textarea id="content" placeholder="Take a note..."></textarea>
+
+            <div class="creator-bottom">
+
+                <select id="color">
+
+                    <option value="#ffffff">
+                        White
+                    </option>
+
+                    <option value="#fef3bd">
+                        Yellow
+                    </option>
+
+                    <option value="#d7e3fc">
+                        Blue
+                    </option>
+
+                    <option value="#faafa8">
+                        Red
+                    </option>
+
+                    <option value="#d3bfdb">
+                        Purple
+                    </option>
+
+                    <option value="#e2f6d3">
+                        Green
+                    </option>
+
+                </select>
+
+                <button onclick="createNote()">
+
+                    Add Note
+
+                </button>
 
             </div>
 
         </div>
 
 
-        <!-- CREATE NOTE -->
-
-        <div class="note-form">
-
-            <input type="text" id="title" placeholder="Note Title">
-
-            <textarea id="content" placeholder="Write your note...">
-
-</textarea>
-
-            <select id="color">
-
-                <option value="#ffffff">
-
-                    White
-
-                </option>
-
-                <option value="#ffeaa7">
-
-                    Yellow
-
-                </option>
-
-                <option value="#dfe6e9">
-
-                    Gray
-
-                </option>
-
-                <option value="#fab1a0">
-
-                    Pink
-
-                </option>
-
-                <option value="#81ecec">
-
-                    Blue
-
-                </option>
-
-            </select>
-
-            <button onclick="createNote()">
-
-                Add Note
-
-            </button>
-
-        </div>
-
-
         <h2 class="section-title">
-            📌 Pinned Notes
+
+            📌 Pinned
+
         </h2>
 
         <div class="notes-grid" id="pinnedNotes">
@@ -97,7 +101,9 @@
 
 
         <h2 class="section-title">
-            All Notes
+
+            Notes
+
         </h2>
 
         <div class="notes-grid" id="notes">
