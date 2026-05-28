@@ -241,13 +241,14 @@ Delete
                 pinnedDiv
                     .innerHTML +=
                     html;
-
-            } else {
-
-                notesDiv
-                    .innerHTML +=
-                    html;
             }
+
+
+            // Show ALL notes
+
+            notesDiv
+                .innerHTML +=
+                html;
         });
 }
 
