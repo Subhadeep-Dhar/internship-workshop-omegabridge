@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>
+        Notes App
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="navbar">
+
+            <h1>
+                My Notes
+            </h1>
+
+            <div class="nav-right">
+
+                <input type="text" id="search" placeholder="Search notes..." onkeyup="searchNotes()">
+
+                <button onclick="logout()">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CREATE NOTE -->
+
+        <div class="note-form">
+
+            <input type="text" id="title" placeholder="Note Title">
+
+            <textarea id="content" placeholder="Write your note...">
+
+</textarea>
+
+            <select id="color">
+
+                <option value="#ffffff">
+
+                    White
+
+                </option>
+
+                <option value="#ffeaa7">
+
+                    Yellow
+
+                </option>
+
+                <option value="#dfe6e9">
+
+                    Gray
+
+                </option>
+
+                <option value="#fab1a0">
+
+                    Pink
+
+                </option>
+
+                <option value="#81ecec">
+
+                    Blue
+
+                </option>
+
+            </select>
+
+            <button onclick="createNote()">
+
+                Add Note
+
+            </button>
+
+        </div>
+
+
+        <h2>
+            📌 Pinned Notes
+        </h2>
+
+        <div class="notes-grid" id="pinnedNotes">
+
+        </div>
+
+
+        <h2>
+            All Notes
+        </h2>
+
+        <div class="notes-grid" id="notes">
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js">
+    </script>
+
+    <script src="script.js">
+    </script>
+
+</body>
+
+</html>
